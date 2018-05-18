@@ -6,7 +6,7 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -22,11 +22,19 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.(js|jsx)$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader',
+      },
+      {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [ 'style-loader', 'css-loader' ]
       }
     ]
-  }
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx']
+  },
 }
 
 module.exports = config;

@@ -1,22 +1,13 @@
+/*
 import $ from 'jquery';
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { isURL } from 'validator';
 import _ from 'lodash';
 import axios from 'axios';
 import state from './state';
-import {
-  renderFeedItems,
-  htmlAppendRender,
-  htmlRender,
-  renderFeed,
-  renderTabControl,
-  renderAllFeeds,
-  renderAllTabControls,
-} from './renders';
 import { checkParseErr, parseHtmlCollection, findInRss, normalizeUrl } from './helpers';
 import { toStorage, getFromStorage } from './local';
-
+*/
 
 const resultsCont = document.getElementById('results');
 const feedForm = document.getElementById('feed-form');
