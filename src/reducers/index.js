@@ -14,7 +14,6 @@ const inputText = (state = '', action) => {
 const urls = (state = {}, action) => {
   switch (action.type) {
     case 'FEED_ADD_SUCCESS': {
-      console.log(action);
       const { feedAtributes } = action.payload;
       const newUrl = feedAtributes.url;
       const id = feedAtributes.feedId;
@@ -84,6 +83,20 @@ const feedsItems = (state = {}, action) => {
   }
 };
 
+const modalStatus = (state = {}, action) => {
+  switch (action.type) {
+    case 'OPEN_MODAL': {
+      const { text } = action.payload.modalInfo;
+      return { show: true, text };
+    }
+    case 'CLOSE_MODAL': {
+      return { show: false };
+    }
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   inputText,
   urls,
@@ -91,6 +104,7 @@ const rootReducer = combineReducers({
   alertStatus,
   feeds,
   feedsItems,
+  modalStatus,
 });
 
 export default rootReducer;

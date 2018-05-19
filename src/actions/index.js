@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { checkParseErr, parseHtmlCollection, extractChildren } from '../logic/helpers';
+import { checkParseErr, parseHtmlCollection, extractChildren, extractFeed } from '../logic/helpers';
 
 export const currentFormInput = inputText => ({
   type: 'INPUT_TEXT',
@@ -40,6 +40,17 @@ export const alertClose = () => ({
   type: 'ALERT_CLOSE',
 });
 
+export const openModal = modalInfo => ({
+  type: 'OPEN_MODAL',
+  payload: {
+    modalInfo,
+  },
+});
+
+export const closeModal = () => ({
+  type: 'CLOSE_MODAL',
+});
+
 export const addFeeds = url => async (dispatch) => {
   dispatch(addFeedRequest());
   const parser = new DOMParser();
@@ -51,8 +62,9 @@ export const addFeeds = url => async (dispatch) => {
     if (checkParseErr((parsedData))) {
       throw new Error('Parsing Error');
     }
-    const feed = parseHtmlCollection(parsedData);
-    const feedChildren = extractChildren(feed);
+    const feedParsed = parseHtmlCollection(parsedData);
+    const feedChildren = extractChildren(feedParsed);
+    const feed = extractFeed(feedParsed);
     const feedId = feed.id;
     dispatch(addFeedSuccess({
       feedId,

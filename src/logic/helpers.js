@@ -1,4 +1,5 @@
 import md5 from 'md5';
+import _ from 'lodash';
 
 export const getNodeTagVal = (node, tag) => {
   const nd = node.getElementsByTagName(tag)[0];
@@ -27,13 +28,11 @@ export const parseHtmlCollection = (coll) => {
 };
 
 export const extractChildren = (coll) => {
-  const { id, children } = coll;
-  return children.map((ch) => {
-    const child = ch;
-    child.feedId = id;
-    return child;
-  });
+  const extracted = _.pick(coll, ['children']);
+  return extracted.children;
 };
+
+export const extractFeed = coll => _.omit(coll, ['children']);
 
 export const findUniq = (oldFeed, newFeed) => {
   const setOldFeed = new Set(oldFeed.map(el => el.guid));
