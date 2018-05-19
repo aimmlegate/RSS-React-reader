@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { checkParseErr, parseHtmlCollection, extractChildren, normalizeUrl } from '../logic/helpers';
+import { checkParseErr, parseHtmlCollection, extractChildren } from '../logic/helpers';
 
 export const currentFormInput = inputText => ({
   type: 'INPUT_TEXT',
@@ -22,31 +22,46 @@ export const addFeedRequest = alertStatus => ({
   },
 });
 
-export const addFeedSuccess = ({ feed, children, url }) => ({
+export const addFeedSuccess = feedAtributes => ({
   type: 'FEED_ADD_SUCCESS',
   payload: {
-    url,
-    feed,
-    children,
+    feedAtributes,
   },
 });
 
+export const addFeedError = error => ({
+  type: 'FEED_ADD_ERROR',
+  payload: {
+    error,
+  },
+});
+
+export const alertClose = () => ({
+  type: 'ALERT_CLOSE',
+});
+
 export const addFeeds = url => async (dispatch) => {
-  dispatch(addFeedRequest({ message: 'adding' }));
+  dispatch(addFeedRequest());
   const parser = new DOMParser();
   try {
-    const corsProxy = 'https://cors-anywhere.herokuapp.com/';
-    const proxyUrl = new URL('', corsProxy);
-    const normUrl = normalizeUrl(url);
-    const response = await axios.get(new URL(`${proxyUrl.href}${normUrl}`), { timeout: 5000 });
-    const parsedData = parser.parseFromString(response.data, 'application/xml');
+    const corsProxy = 'https://cors-proxy.htmldriven.com/';
+    const proxyUrl = new URL('?url=', corsProxy);
+    const response = await axios.get(new URL(`${proxyUrl.href}${url}`), { timeout: 5000 });
+    const parsedData = parser.parseFromString(response.data.body, 'application/xml');
     if (checkParseErr((parsedData))) {
       throw new Error('Parsing Error');
     }
     const feed = parseHtmlCollection(parsedData);
     const feedChildren = extractChildren(feed);
-    dispatch(addFeedSuccess({ feed, feedChildren, normUrl }));
+    const feedId = feed.id;
+    dispatch(addFeedSuccess({
+      feedId,
+      feed,
+      feedChildren,
+      url,
+    }));
   } catch (e) {
-    console.log(e);
+    console.error(e);
+    dispatch(addFeedError(e));
   }
 };
