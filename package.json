@@ -1,7 +1,7 @@
 {
-  "name": "aimml-rss-reaser",
-  "version": "2.0.5",
-  "description": "rss-reaser",
+  "name": "aimml-rss-reader-react",
+  "version": "3.0.5",
+  "description": "rss-reaser-react",
   "main": "index.jsx",
   "scripts": {
     "webpack-serve": "webpack-serve",
@@ -16,17 +16,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aimmlegate/RSS-Reader"
+    "url": "https://github.com/aimmlegate/RSS-React-reader"
   },
   "author": "Andrey Lukin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/aimmlegate/RSS-Reader/issues"
+    "url": "https://github.com/aimmlegate/RSS-React-reader/issues"
   },
   "files": [
     "dist"
   ],
-  "homepage": "http://hollow-belief.surge.sh/",
+  "homepage": "",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
