@@ -51,6 +51,11 @@ export const closeModal = () => ({
   type: 'CLOSE_MODAL',
 });
 
+export const setActiveTab = tabId => ({
+  type: 'SET_ACTIVE_TAB',
+  payload: tabId,
+});
+
 export const addFeeds = url => async (dispatch) => {
   dispatch(addFeedRequest());
   const parser = new DOMParser();

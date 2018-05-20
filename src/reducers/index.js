@@ -97,6 +97,21 @@ const modalStatus = (state = {}, action) => {
   }
 };
 
+const activeTab = (state = '', action) => {
+  switch (action.type) {
+    case 'SET_ACTIVE_TAB': {
+      return action.payload;
+    }
+    case 'FEED_ADD_SUCCESS': {
+      const { feedAtributes } = action.payload;
+      const id = feedAtributes.feedId;
+      return id;
+    }
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   inputText,
   urls,
@@ -105,6 +120,7 @@ const rootReducer = combineReducers({
   feeds,
   feedsItems,
   modalStatus,
+  activeTab,
 });
 
 export default rootReducer;

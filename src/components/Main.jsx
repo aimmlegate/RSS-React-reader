@@ -7,7 +7,7 @@ import ModalContainer from '../containers/ModalContainer';
 const Main = () => (
   <div>
     <FormContainer></FormContainer>
-    <div className='container'>
+    <div className='container-fluid'>
       <AlertContainer></AlertContainer>
       <FeedsContainer></FeedsContainer>
     </div>
