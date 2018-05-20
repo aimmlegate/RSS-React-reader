@@ -29,6 +29,13 @@ export const addFeedSuccess = feedAtributes => ({
   },
 });
 
+export const feedUpdateSuccess = feedAtributes => ({
+  type: 'FEED_UPDATE_SUCCESS',
+  payload: {
+    feedAtributes,
+  },
+});
+
 export const addFeedError = error => ({
   type: 'FEED_ADD_ERROR',
   payload: {
@@ -56,8 +63,29 @@ export const setActiveTab = tabId => ({
   payload: tabId,
 });
 
-export const addFeeds = url => async (dispatch) => {
-  dispatch(addFeedRequest());
+export const startUpdate = () => ({
+  type: 'START_UPDATE',
+});
+
+export const updateError = () => ({
+  type: 'UPDATE_ERROR',
+});
+
+const actionDispatcher = {
+  add: {
+    request: () => addFeedRequest(),
+    success: params => addFeedSuccess(params),
+    error: e => addFeedError(e),
+  },
+  update: {
+    request: () => startUpdate(),
+    success: params => feedUpdateSuccess(params),
+    error: () => updateError(),
+  },
+};
+
+export const addFeeds = (url, type) => async (dispatch) => {
+  dispatch(actionDispatcher[type].request());
   const parser = new DOMParser();
   try {
     const corsProxy = 'https://cors-proxy.htmldriven.com/';
@@ -71,7 +99,7 @@ export const addFeeds = url => async (dispatch) => {
     const feedChildren = extractChildren(feedParsed);
     const feed = extractFeed(feedParsed);
     const feedId = feed.id;
-    dispatch(addFeedSuccess({
+    dispatch(actionDispatcher[type].success({
       feedId,
       feed,
       feedChildren,
@@ -79,6 +107,7 @@ export const addFeeds = url => async (dispatch) => {
     }));
   } catch (e) {
     console.error(e);
-    dispatch(addFeedError(e));
+    dispatch(actionDispatcher[type].error(e));
   }
 };
+

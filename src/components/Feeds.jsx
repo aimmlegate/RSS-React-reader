@@ -1,5 +1,5 @@
 import React from 'react';
-import Feed from '../components/Feed.jsx';
+import FeedContainer from '../containers/FeedContainer';
 import cn from 'classnames';
 
 export default class Feeds extends React.Component {
@@ -44,7 +44,7 @@ export default class Feeds extends React.Component {
                 });
                 return (
                   <div key={id} className={tabItemsClasses}>
-                    <Feed name={name} description={description} id={id}></Feed>
+                    <FeedContainer name={name} description={description} id={id}></FeedContainer>
                   </div>
                 );
               })

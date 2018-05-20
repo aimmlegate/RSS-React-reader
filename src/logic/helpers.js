@@ -18,7 +18,7 @@ export const parseHtmlCollection = (coll) => {
   const link = getNodeTagVal(coll, 'link');
   const guid = getNodeTagVal(coll, 'guid');
   return {
-    id: md5(guid),
+    id: md5(link),
     guid,
     name,
     description,

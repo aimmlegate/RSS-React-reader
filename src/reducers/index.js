@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { findUniq } from '../logic/helpers';
 
 const inputText = (state = '', action) => {
   switch (action.type) {
@@ -61,9 +62,8 @@ const feeds = (state = {}, action) => {
   switch (action.type) {
     case 'FEED_ADD_SUCCESS': {
       const { feedAtributes } = action.payload;
-      const newFeed = feedAtributes.feed;
-      const id = feedAtributes.feedId;
-      return { ...state, [id]: newFeed };
+      const { feed, feedId } = feedAtributes;
+      return { ...state, [feedId]: feed };
     }
     default:
       return state;
@@ -77,6 +77,14 @@ const feedsItems = (state = {}, action) => {
       const newFeedItems = feedAtributes.feedChildren;
       const id = feedAtributes.feedId;
       return { ...state, [id]: newFeedItems };
+    }
+    case 'FEED_UPDATE_SUCCESS': {
+      const { feedAtributes } = action.payload;
+      const id = feedAtributes.feedId;
+      const newFeedItems = feedAtributes.feedChildren;
+      const currentItems = state[id];
+      const addedItems = findUniq(currentItems, newFeedItems);
+      return { ...state, [id]: [...currentItems, ...addedItems] };
     }
     default:
       return state;

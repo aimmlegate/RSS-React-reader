@@ -23,7 +23,7 @@ export default class Form extends React.Component {
     const formUrl = this.props.inputText;
     const { status } = this.props.formStatus;
     if (status) {
-      this.props.addFeeds(formUrl);
+      this.props.addFeeds(formUrl, 'add');
     }
   }
 
