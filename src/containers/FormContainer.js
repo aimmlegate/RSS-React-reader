@@ -3,8 +3,7 @@ import Form from "../components/Form.jsx";
 import * as actionCreators from "../actions";
 
 const mapStateToProps = ({ inputText, formStatus, urls }) => {
-  const props = { inputText, formStatus, urls };
-  return props;
+  return { inputText, formStatus, urls };
 };
 
 export default connect(mapStateToProps, actionCreators)(Form);

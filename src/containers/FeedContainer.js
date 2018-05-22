@@ -3,8 +3,7 @@ import Feed from "../components/Feed.jsx";
 import * as actionCreators from "../actions";
 
 const mapStateToProps = ({ urls }) => {
-  const props = { urls };
-  return props;
+  return { urls: Object.values(urls) };
 };
 
 export default connect(mapStateToProps, actionCreators)(Feed);

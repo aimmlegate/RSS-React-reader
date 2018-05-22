@@ -3,8 +3,7 @@ import Modal from "../components/Modal.jsx";
 import * as actionCreators from "../actions";
 
 const mapStateToProps = ({ modalStatus }) => {
-  const props = { modalStatus };
-  return props;
+  return { modalStatus };
 };
 
 export default connect(mapStateToProps, actionCreators)(Modal);

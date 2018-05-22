@@ -6,8 +6,7 @@ export default class Feed extends React.Component {
   componentDidMount() {
     const startFeedUpdater = () => {
       const { urls } = this.props;
-      const urlsArr = Object.values(urls);
-      const updatingFeeds = urlsArr.map(url =>
+      const updatingFeeds = urls.map(url =>
         this.props.addFeeds(url, "update")
       );
       return Promise.all(updatingFeeds)

@@ -7,7 +7,7 @@ export default class Alert extends React.Component {
   };
 
   render() {
-    const { show, message, err } = this.props.alertStatus;
+    const { show, message, err } = this.props;
     const alertClasses = cn({
       alert: true,
       "alert-primary": !err,
