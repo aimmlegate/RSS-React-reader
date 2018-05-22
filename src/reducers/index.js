@@ -1,12 +1,12 @@
-import { combineReducers } from 'redux';
-import { findUniq } from '../logic/helpers';
+import { combineReducers } from "redux";
+import { findUniq } from "../logic/helpers";
 
-const inputText = (state = '', action) => {
+const inputText = (state = "", action) => {
   switch (action.type) {
-    case 'INPUT_TEXT':
+    case "INPUT_TEXT":
       return action.payload.inputText;
-    case 'FEED_ADD_SUCCESS':
-      return '';
+    case "FEED_ADD_SUCCESS":
+      return "";
     default:
       return state;
   }
@@ -14,7 +14,7 @@ const inputText = (state = '', action) => {
 
 const urls = (state = {}, action) => {
   switch (action.type) {
-    case 'FEED_ADD_SUCCESS': {
+    case "FEED_ADD_SUCCESS": {
       const { feedAtributes } = action.payload;
       const newUrl = feedAtributes.url;
       const id = feedAtributes.feedId;
@@ -27,12 +27,12 @@ const urls = (state = {}, action) => {
 
 const formStatus = (state = {}, action) => {
   switch (action.type) {
-    case 'SET_FORM_STATUS':
+    case "SET_FORM_STATUS":
       return action.payload.formStatus;
-    case 'FEED_ADD_SUCCESS': {
+    case "FEED_ADD_SUCCESS": {
       return { ...state, status: false };
     }
-    case 'FEED_ADD_ERROR': {
+    case "FEED_ADD_ERROR": {
       return { ...state, status: true };
     }
     default:
@@ -42,16 +42,16 @@ const formStatus = (state = {}, action) => {
 
 const alertStatus = (state = {}, action) => {
   switch (action.type) {
-    case 'FEED_ADD_REQUEST':
-      return { err: false, show: true, message: 'adding...' };
-    case 'FEED_ADD_ERROR': {
+    case "FEED_ADD_REQUEST":
+      return { err: false, show: true, message: "adding..." };
+    case "FEED_ADD_ERROR": {
       const { message } = action.payload.error;
       return { err: true, show: true, message };
     }
-    case 'FEED_ADD_SUCCESS': {
-      return { err: false, show: false, message: 'feed added' };
+    case "FEED_ADD_SUCCESS": {
+      return { err: false, show: false, message: "feed added" };
     }
-    case 'ALERT_CLOSE':
+    case "ALERT_CLOSE":
       return { show: false };
     default:
       return state;
@@ -60,7 +60,7 @@ const alertStatus = (state = {}, action) => {
 
 const feeds = (state = {}, action) => {
   switch (action.type) {
-    case 'FEED_ADD_SUCCESS': {
+    case "FEED_ADD_SUCCESS": {
       const { feedAtributes } = action.payload;
       const { feed, feedId } = feedAtributes;
       return { ...state, [feedId]: feed };
@@ -72,13 +72,13 @@ const feeds = (state = {}, action) => {
 
 const feedsItems = (state = {}, action) => {
   switch (action.type) {
-    case 'FEED_ADD_SUCCESS': {
+    case "FEED_ADD_SUCCESS": {
       const { feedAtributes } = action.payload;
       const newFeedItems = feedAtributes.feedChildren;
       const id = feedAtributes.feedId;
       return { ...state, [id]: newFeedItems };
     }
-    case 'FEED_UPDATE_SUCCESS': {
+    case "FEED_UPDATE_SUCCESS": {
       const { feedAtributes } = action.payload;
       const id = feedAtributes.feedId;
       const newFeedItems = feedAtributes.feedChildren;
@@ -93,11 +93,11 @@ const feedsItems = (state = {}, action) => {
 
 const modalStatus = (state = {}, action) => {
   switch (action.type) {
-    case 'OPEN_MODAL': {
+    case "OPEN_MODAL": {
       const { text } = action.payload.modalInfo;
       return { show: true, text };
     }
-    case 'CLOSE_MODAL': {
+    case "CLOSE_MODAL": {
       return { show: false };
     }
     default:
@@ -105,12 +105,12 @@ const modalStatus = (state = {}, action) => {
   }
 };
 
-const activeTab = (state = '', action) => {
+const activeTab = (state = "", action) => {
   switch (action.type) {
-    case 'SET_ACTIVE_TAB': {
+    case "SET_ACTIVE_TAB": {
       return action.payload;
     }
-    case 'FEED_ADD_SUCCESS': {
+    case "FEED_ADD_SUCCESS": {
       const { feedAtributes } = action.payload;
       const id = feedAtributes.feedId;
       return id;
@@ -128,7 +128,7 @@ const rootReducer = combineReducers({
   feeds,
   feedsItems,
   modalStatus,
-  activeTab,
+  activeTab
 });
 
 export default rootReducer;

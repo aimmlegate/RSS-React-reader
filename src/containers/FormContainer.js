@@ -1,6 +1,6 @@
-import { connect } from 'react-redux';
-import Form from '../components/Form.jsx';
-import * as actionCreators from '../actions';
+import { connect } from "react-redux";
+import Form from "../components/Form.jsx";
+import * as actionCreators from "../actions";
 
 const mapStateToProps = ({ inputText, formStatus, urls }) => {
   const props = { inputText, formStatus, urls };
@@ -8,4 +8,3 @@ const mapStateToProps = ({ inputText, formStatus, urls }) => {
 };
 
 export default connect(mapStateToProps, actionCreators)(Form);
-

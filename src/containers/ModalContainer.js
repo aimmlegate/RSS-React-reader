@@ -1,6 +1,6 @@
-import { connect } from 'react-redux';
-import Modal from '../components/Modal.jsx';
-import * as actionCreators from '../actions';
+import { connect } from "react-redux";
+import Modal from "../components/Modal.jsx";
+import * as actionCreators from "../actions";
 
 const mapStateToProps = ({ modalStatus }) => {
   const props = { modalStatus };
@@ -8,4 +8,3 @@ const mapStateToProps = ({ modalStatus }) => {
 };
 
 export default connect(mapStateToProps, actionCreators)(Modal);
-

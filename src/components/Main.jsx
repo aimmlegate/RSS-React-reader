@@ -1,17 +1,17 @@
-import React from 'react';
-import FormContainer from '../containers/FormContainer';
-import AlertContainer from '../containers/AlertContainer';
-import FeedsContainer from '../containers/FeedsContainer';
-import ModalContainer from '../containers/ModalContainer';
+import React from "react";
+import FormContainer from "../containers/FormContainer";
+import AlertContainer from "../containers/AlertContainer";
+import FeedsContainer from "../containers/FeedsContainer";
+import ModalContainer from "../containers/ModalContainer";
 
 const Main = () => (
   <div>
-    <FormContainer></FormContainer>
-    <div className='container-fluid'>
-      <AlertContainer></AlertContainer>
-      <FeedsContainer></FeedsContainer>
+    <FormContainer />
+    <div className="container-fluid">
+      <AlertContainer />
+      <FeedsContainer />
     </div>
-    <ModalContainer></ModalContainer>
+    <ModalContainer />
   </div>
 );
 

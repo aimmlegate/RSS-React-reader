@@ -1,6 +1,6 @@
-import { connect } from 'react-redux';
-import FeedsList from '../components/FeedsList.jsx';
-import * as actionCreators from '../actions';
+import { connect } from "react-redux";
+import FeedsList from "../components/FeedsList.jsx";
+import * as actionCreators from "../actions";
 
 const mapStateToProps = ({ feedsItems, modalStatus }) => {
   const props = { feedsItems, modalStatus };
