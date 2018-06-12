@@ -1,4 +1,5 @@
-#RSS Reader 
-React + Redux
+# RSS Reader (React + Redux)
+Перенес ридера RSS на React + Redux
 
-http://vacuous-jeans.surge.sh/
+[Live demo](http://vacuous-jeans.surge.sh/)
+
